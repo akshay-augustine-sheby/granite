@@ -1,0 +1,14 @@
+{
+  "folders": [
+	{
+		"path": "../../.."
+	},
+	{
+		"path": "../../../../css-practice"
+	}
+],
+  "settings": {
+    "yaml.format.enable": true,
+    "ruby.rubocop.useBundler": true
+  }
+}
