@@ -8,12 +8,12 @@ class TasksController < ApplicationController
 
   def index
     @tasks = policy_scope(Task)
-    render status: :ok, json: { tasks: tasks }
+    render status: :ok, json: { tasks: @tasks }
   end
 
   def create
-    task = Task.new(task_params.merge(task_owner_id: @current_user.id))
-    authorize task
+    @task = Task.new(task_params.merge(task_owner_id: @current_user.id))
+    authorize @task
     if @task.save
       render status: :ok,
         json: { notice: t("successfully_created", entity: "Task") }
