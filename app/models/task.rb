@@ -2,13 +2,14 @@
 
 class Task < ApplicationRecord
   RESTRICTED_ATTRIBUTES = %i[title user_id]
+
   enum status: { unstarred: 0, starred: 1 }
   enum progress: { pending: 0, completed: 1 }
+
   has_many :comments, dependent: :destroy
   belongs_to :task_owner, foreign_key: "task_owner_id", class_name: "User"
   belongs_to :assigned_user, foreign_key: "assigned_user_id", class_name: "User"
-  # before_validation :set_title
-  # after_validation :set_title
+
   validates :title, presence: true, length: { maximum: 50 }
   validates :slug, uniqueness: true
   validate :slug_not_changed
@@ -17,6 +18,8 @@ class Task < ApplicationRecord
   # before_save :change_title
   # after_save :change_title
   # before_validation :assign_title, unless: :title_present
+  # before_validation :set_title
+  # after_validation :set_title
 
   private
 
